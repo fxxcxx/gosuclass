@@ -1,0 +1,92 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: registration
+          uri: http://localhost:8082
+          predicates:
+            - Path=/registrations/**, 
+        - id: gosuclass
+          uri: http://localhost:8083
+          predicates:
+            - Path=/gosuClasses/**, 
+        - id: evaluation
+          uri: http://localhost:8084
+          predicates:
+            - Path=/evaluations/**, 
+        - id: history
+          uri: http://localhost:8085
+          predicates:
+            - Path=/histories/**, 
+        - id: recommend
+          uri: http://localhost:8086
+          predicates:
+            - Path=/recommends/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+#>>> API Gateway / Routes
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: registration
+          uri: http://registration:8080
+          predicates:
+            - Path=/registrations/**, 
+        - id: gosuclass
+          uri: http://gosuclass:8080
+          predicates:
+            - Path=/gosuClasses/**, 
+        - id: evaluation
+          uri: http://evaluation:8080
+          predicates:
+            - Path=/evaluations/**, 
+        - id: history
+          uri: http://history:8080
+          predicates:
+            - Path=/histories/**, 
+        - id: recommend
+          uri: http://recommend:8080
+          predicates:
+            - Path=/recommends/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
