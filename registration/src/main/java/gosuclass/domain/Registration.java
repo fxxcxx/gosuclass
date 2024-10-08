@@ -22,8 +22,6 @@ public class Registration {
 
     private Long classId;
 
-    private Integer personId;
-
     private String status;
 
     @PostPersist
@@ -35,7 +33,7 @@ public class Registration {
         // mappings goes here
         RegistrationApplication.applicationContext
             .getBean(gosuclass.external.EvaluationService.class)
-            .evaluate(evaluation);
+            .preevaluate(evaluation);
 
         ClassRegistered classRegistered = new ClassRegistered(this);
         classRegistered.publishAfterCommit();
@@ -55,7 +53,7 @@ public class Registration {
     }
 
     //<<< Clean Arch / Port Method
-    public static void updateStatus(ClassEvaluate classEvaluate) {
+    public static void updateStatus(PreClassEvaluate preClassEvaluate) {
         //implement business logic here:
 
         /** Example 1:  new item 
@@ -66,7 +64,7 @@ public class Registration {
 
         /** Example 2:  finding and process
         
-        repository().findById(classEvaluate.get???()).ifPresent(registration->{
+        repository().findById(preClassEvaluate.get???()).ifPresent(registration->{
             
             registration // do something
             repository().save(registration);

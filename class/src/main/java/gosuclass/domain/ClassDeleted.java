@@ -12,6 +12,12 @@ import lombok.*;
 public class ClassDeleted extends AbstractEvent {
 
     private Long id;
+    private String className;
+    private String gosuName;
+    private String description;
+    private Integer personCount;
+    private List<String> preExam;
+    private List<String> afterExam;
 
     public ClassDeleted(Class aggregate) {
         super(aggregate);

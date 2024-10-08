@@ -9,5 +9,6 @@ public class Evaluation {
     private Long id;
     private Integer classId;
     private Integer personId;
-    private Integer score;
+    private Integer preScore;
+    private Integer afterScore;
 }

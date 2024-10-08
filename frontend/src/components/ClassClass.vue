@@ -19,7 +19,9 @@
             <String label="ClassName" v-model="value.className" :editMode="editMode" :inputUI="''"/>
             <String label="GosuName" v-model="value.gosuName" :editMode="editMode" :inputUI="''"/>
             <String label="Description" v-model="value.description" :editMode="editMode" :inputUI="''"/>
-            <Number label="PersonNumber" v-model="value.personNumber" :editMode="editMode" :inputUI="''"/>
+            <Number label="PersonCount" v-model="value.personCount" :editMode="editMode" :inputUI="''"/>
+            <String label="PreExam" v-model="value.preExam" :editMode="editMode" :inputUI="''"/>
+            <String label="AfterExam" v-model="value.afterExam" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

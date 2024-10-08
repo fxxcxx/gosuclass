@@ -43,13 +43,11 @@
                             
                             
                             
-                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ClassId :  {{data.classId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ PersonId :  {{data.personId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Status :  {{data.status }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
@@ -119,7 +117,6 @@
             
             this.newValue = {
                 'classId': 0,
-                'personId': 0,
                 'status': '',
             }
         },

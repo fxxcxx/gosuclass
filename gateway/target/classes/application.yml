@@ -21,10 +21,14 @@ spring:
           uri: http://localhost:8084
           predicates:
             - Path=/evaluations/**, 
-        - id: dashboard
+        - id: history
           uri: http://localhost:8085
           predicates:
-            - Path=, 
+            - Path=/histories/**, 
+        - id: recommend
+          uri: http://localhost:8086
+          predicates:
+            - Path=/recommends/**, 
         - id: frontend
           uri: http://localhost:8080
           predicates:
@@ -61,10 +65,14 @@ spring:
           uri: http://evaluation:8080
           predicates:
             - Path=/evaluations/**, 
-        - id: dashboard
-          uri: http://dashboard:8080
+        - id: history
+          uri: http://history:8080
           predicates:
-            - Path=, 
+            - Path=/histories/**, 
+        - id: recommend
+          uri: http://recommend:8080
+          predicates:
+            - Path=/recommends/**, 
         - id: frontend
           uri: http://frontend:8080
           predicates:

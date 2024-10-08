@@ -106,7 +106,8 @@
             me.newValue = {
                 'classId': 0,
                 'personId': 0,
-                'score': 0,
+                'preScore': 0,
+                'afterScore': 0,
             }
         },
         methods:{

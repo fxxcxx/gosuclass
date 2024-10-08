@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name = "evaluation", url = "${api.url.evaluation}")
 public interface EvaluationService {
     @RequestMapping(method = RequestMethod.POST, path = "/evaluations")
-    public void evaluate(@RequestBody Evaluation evaluation);
+    public void preevaluate(@RequestBody Evaluation evaluation);
 }

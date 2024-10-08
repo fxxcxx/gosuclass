@@ -68,7 +68,6 @@
                 [
                     { text: "id", value: "id" },
                     { text: "classId", value: "classId" },
-                    { text: "personId", value: "personId" },
                     { text: "status", value: "status" },
                 ],
             registration : [],
@@ -88,7 +87,6 @@
 
             this.newValue = {
                 'classId': 0,
-                'personId': 0,
                 'status': '',
             }
         },

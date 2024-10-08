@@ -105,7 +105,6 @@
             
             me.newValue = {
                 'classId': 0,
-                'personId': 0,
                 'status': '',
             }
         },

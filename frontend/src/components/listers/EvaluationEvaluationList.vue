@@ -44,13 +44,15 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ClassId :  {{data.classId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ PersonId :  {{data.personId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Score :  {{data.score }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ PreScore :  {{data.preScore }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ AfterScore :  {{data.afterScore }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -120,7 +122,8 @@
             this.newValue = {
                 'classId': 0,
                 'personId': 0,
-                'score': 0,
+                'preScore': 0,
+                'afterScore': 0,
             }
         },
         methods: {

@@ -69,7 +69,8 @@
                     { text: "id", value: "id" },
                     { text: "classId", value: "classId" },
                     { text: "personId", value: "personId" },
-                    { text: "score", value: "score" },
+                    { text: "preScore", value: "preScore" },
+                    { text: "afterScore", value: "afterScore" },
                 ],
             evaluation : [],
             newValue: {},
@@ -89,7 +90,8 @@
             this.newValue = {
                 'classId': 0,
                 'personId': 0,
-                'score': 0,
+                'preScore': 0,
+                'afterScore': 0,
             }
         },
         methods: {

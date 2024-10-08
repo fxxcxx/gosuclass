@@ -17,7 +17,6 @@
 
         <v-card-text style="background-color: white;">
             <Number label="ClassId" v-model="value.classId" :editMode="editMode" :inputUI="''"/>
-            <Number label="PersonId" v-model="value.personId" :editMode="editMode" :inputUI="''"/>
             <String label="Status" v-model="value.status" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 

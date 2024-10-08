@@ -21,7 +21,10 @@
                                 PersonId :  {{item.personId }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                Score :  {{item.score }}
+                                PreScore :  {{item.preScore }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                AfterScore :  {{item.afterScore }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -74,6 +77,8 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
                     
                     
                     

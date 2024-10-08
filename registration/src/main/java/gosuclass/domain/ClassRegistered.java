@@ -12,6 +12,8 @@ import lombok.*;
 public class ClassRegistered extends AbstractEvent {
 
     private Long id;
+    private Long classId;
+    private String status;
 
     public ClassRegistered(Registration aggregate) {
         super(aggregate);

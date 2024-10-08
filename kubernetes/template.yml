@@ -123,22 +123,62 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dashboard
+  name: history
   labels:
-    app: dashboard
+    app: history
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dashboard
+      app: history
   template:
     metadata:
       labels:
-        app: dashboard
+        app: history
     spec:
       containers:
-        - name: dashboard
-          image: username/dashboard:latest
+        - name: history
+          image: username/history:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommend
+  labels:
+    app: recommend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recommend
+  template:
+    metadata:
+      labels:
+        app: recommend
+    spec:
+      containers:
+        - name: recommend
+          image: username/recommend:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -216,13 +256,30 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: dashboard
+  name: history
   labels:
-    app: dashboard
+    app: history
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: dashboard
+    app: history
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommend
+  labels:
+    app: recommend
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: recommend
 

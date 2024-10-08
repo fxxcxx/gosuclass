@@ -25,7 +25,13 @@ public class Class {
 
     private String description;
 
-    private Integer personNumber;
+    private Integer personCount;
+
+    @ElementCollection
+    private List<String> preExam;
+
+    @ElementCollection
+    private List<String> afterExam;
 
     @PostPersist
     public void onPostPersist() {
