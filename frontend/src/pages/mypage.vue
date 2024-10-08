@@ -1,5 +1,8 @@
 <template>
-<p v-for="i in classes"> {{ i.className }} </p>
+
+<p v-for="i in classes"> {{ i.className }}, {{ i.gosuName }}, {{ i.description }}
+</p>
+<p></p>
 </template>
 
 <script setup>

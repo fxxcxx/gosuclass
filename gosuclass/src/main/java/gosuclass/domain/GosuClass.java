@@ -41,6 +41,7 @@ public class GosuClass {
         ClassDeleted classDeleted = new ClassDeleted(this);
         classDeleted.publishAfterCommit();
     }
+    
 
     public static GosuClassRepository repository() {
         GosuClassRepository gosuClassRepository = GosuclassApplication.applicationContext.getBean(

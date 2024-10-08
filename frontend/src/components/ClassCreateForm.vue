@@ -1,21 +1,55 @@
 <template>
   <VCard class="mx-auto pa-12 pb-8" elevation="4" rounded="lg">
+
     <div class="text-subtitle-1 text-medium-emphasis">강의 제목</div>
-    <VTextField v-model="classTitle" density="compact" variant="outlined"></VTextField>
+    <VTextField v-model="className" density="compact" variant="outlined"></VTextField>
+
+    <div class="text-subtitle-1 text-medium-emphasis">강사 이름</div>
+    <VTextField v-model="gosuName" density="compact" variant="outlined"></VTextField>
 
     <div class="text-subtitle-1 text-medium-emphasis">강의 설명</div>
-    <VTextField v-model="classDescription" density="compact" variant="outlined"></VTextField>
+    <VTextField v-model="description" density="compact" variant="outlined"></VTextField>
 
-    <div class="text-subtitle-1 text-medium-emphasis">기타1</div>
-    <VTextField v-model="classEtc1" density="compact" variant="outlined"></VTextField>
+    <div class="text-subtitle-1 text-medium-emphasis">사전평가 문항</div>
+    <VRow>
+      <VCol cols="9">
+        <VTextField v-model="preExamQuestion" label="문제" density="compact" variant="outlined"></VTextField>
+      </VCol>
+      <VCol>
+        <VTextField v-model="preExamAnswer" label="답" density="compact" variant="outlined"></VTextField>
+      </VCol>
+      <VCol cols="1">
+      <VBtn color="primary" @click="addPreExam">추가</VBtn>
+    </VCol>
+    </VRow>
 
-    <div class="text-subtitle-1 text-medium-emphasis">기타2</div>
-    <VTextField v-model="classEtc2" density="compact" variant="outlined"></VTextField>
+    <ul>
+      <li v-for="(item, index) in preExam" :key="index">
+        <span style="font-weight: bold;">문제</span> : {{ JSON.parse(item).question }}, <span style="font-weight: bold;">답</span> : {{ JSON.parse(item).answer }}
+      </li>
+    </ul>
+
+    <div class="text-subtitle-1 text-medium-emphasis">사후평가 문항</div>
+    <VRow>
+      <VCol cols="9">
+        <VTextField v-model="afterExamQuestion" label="문제" density="compact" variant="outlined"></VTextField>
+      </VCol>
+      <VCol>
+        <VTextField v-model="afterExamAnswer" label="답" density="compact" variant="outlined"></VTextField>
+      </VCol>
+      <VCol cols="1">
+          <VBtn color="primary" @click="addAfterExam">추가</VBtn>
+      </VCol>
+    </VRow>
+    <ul>
+      <li v-for="(item, index) in afterExam" :key="index">
+        <span style="font-weight: bold;">문제</span> : {{ JSON.parse(item).question }}, <span style="font-weight: bold;">답</span> : {{ JSON.parse(item).answer }}
+      </li>
+    </ul>
 
 
-
-    <VBtn class="mb-8" color="gray" size="large" variant="tonal" block @click="classCreate">
-      Log In
+    <VBtn class="mb-8 mt-8" color="gray" size="large" variant="tonal" block @click="classCreate">
+      강의 개설
     </VBtn>
 
 
@@ -25,21 +59,57 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 
 
-const classTitle = ref("");
-const classDescription = ref("");
-const classEtc1 = ref("");
-const classEtc2 = ref("");
+const className = ref("");
+const gosuName = ref("");
+const description = ref("");
+const preExam = ref([]);
+const afterExam = ref([]);
+const preExamQuestion = ref("");
+const preExamAnswer = ref("");
+const afterExamQuestion = ref("");
+const afterExamAnswer = ref("");
+
+
+const addPreExam = () => {
+  if (preExamQuestion.value.trim() !== "" && preExamAnswer.value.trim() !== "") {
+    const preExamItem = JSON.stringify({ question: preExamQuestion.value, answer: preExamAnswer.value });
+    preExam.value.push(preExamItem);
+    preExamQuestion.value = "";
+    preExamAnswer.value = "";
+  }
+};
+
+const addAfterExam = () => {
+  if (afterExamQuestion.value.trim() !== "" && afterExamAnswer.value.trim() !== "") {
+    const afterExamItem = JSON.stringify({ question: afterExamQuestion.value, answer: afterExamAnswer.value });
+    afterExam.value.push(afterExamItem);
+    afterExamQuestion.value = "";
+    afterExamAnswer.value = "";
+  }
+};
 
 const classCreate = () => {
-  console.log(classTitle.value, classDescription.value, classEtc1.value, classEtc2.value);
-  alert("강의 생성 완료 \n" + classTitle.value + "\n" + classDescription.value + "\n" + classEtc1.value + "\n" + classEtc2.value);
+  axios.post('https://8088-fxxcxx-gosuclass-wchc49249p0.ws-us116.gitpod.io/gosuClasses', {
+      className: className.value,
+      gosuName: gosuName.value,
+      description: description.value,
+      preExam: preExam.value,
+      afterExam: afterExam.value
+  })
+  .then(response => {
+    console.log(response.data);
+    alert(className.value + " 강의를 개설 성공했습니다.");
+  })
+  .catch(error => {
+    console.error('Error posting data:', error);
+  });
   router.push("/");
 }
-
 </script>
 
 <style lang="scss" scoped>

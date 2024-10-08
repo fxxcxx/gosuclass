@@ -9,8 +9,10 @@
         <router-link to="/mypage">
           <v-btn variant="text" color="primary">마이페이지</v-btn>
         </router-link>
+        <router-link to="/apply-class">
+          <v-btn variant="text" color="black">강의신청</v-btn>
+        </router-link>
 
-        <v-btn variant="text" color="black">강의신청</v-btn>
 
         <router-link to="/create-class">
           <v-btn variant="text" color="black">강의개설</v-btn>
