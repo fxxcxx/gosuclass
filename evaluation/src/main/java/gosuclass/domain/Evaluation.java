@@ -1,7 +1,8 @@
 package gosuclass.domain;
 
 import gosuclass.EvaluationApplication;
-import gosuclass.domain.ClassEvaluate;
+import gosuclass.domain.AfterClassEvaluate;
+import gosuclass.domain.PreClassEvaluate;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -22,12 +23,17 @@ public class Evaluation {
 
     private Integer personId;
 
-    private Integer score;
+    private Integer preScore;
+
+    private Integer afterScore;
 
     @PostPersist
     public void onPostPersist() {
-        ClassEvaluate classEvaluate = new ClassEvaluate(this);
-        classEvaluate.publishAfterCommit();
+        PreClassEvaluate preClassEvaluate = new PreClassEvaluate(this);
+        preClassEvaluate.publishAfterCommit();
+
+        AfterClassEvaluate afterClassEvaluate = new AfterClassEvaluate(this);
+        afterClassEvaluate.publishAfterCommit();
     }
 
     public static EvaluationRepository repository() {

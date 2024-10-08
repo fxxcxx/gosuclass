@@ -107,7 +107,9 @@
                 'className': '',
                 'gosuName': '',
                 'description': '',
-                'personNumber': 0,
+                'personCount': 0,
+                'preExam': [],
+                'afterExam': [],
             }
         },
         methods:{

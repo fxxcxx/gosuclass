@@ -23,7 +23,8 @@ See the README.md files inside the each microservices directory:
 - registration
 - class
 - evaluation
-- dashboard
+- history
+- recommend
 
 
 ## Run API Gateway (Spring Gateway)
@@ -35,18 +36,23 @@ mvn spring-boot:run
 ## Test by API
 - registration
 ```
- http :8088/registrations id="id" classId="classId" personId="personId" status="status" 
+ http :8088/registrations id="id" classId="classId" status="status" 
 ```
 - class
 ```
- http :8088/classes id="id" className="className" gosuName="gosuName" description="description" personNumber="personNumber" 
+ http :8088/classes id="id" className="className" gosuName="gosuName" description="description" personCount="personCount" preExam="preExam" afterExam="afterExam" 
 ```
 - evaluation
 ```
- http :8088/evaluations id="id" classId="classId" personId="personId" score="score" 
+ http :8088/evaluations id="id" classId="classId" personId="personId" preScore="preScore" afterScore="afterScore" 
 ```
-- dashboard
+- history
 ```
+ http :8088/histories id="id" personId="personId" classId="classId" afterScore="afterScore" 
+```
+- recommend
+```
+ http :8088/recommends id="id" personId="personId" classId="classId" className="className" 
 ```
 
 

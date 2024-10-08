@@ -45,6 +45,8 @@
                             
                             
                             
+                            
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -52,7 +54,9 @@
                             [ ClassName :  {{data.className }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ GosuName :  {{data.gosuName }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Description :  {{data.description }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ PersonNumber :  {{data.personNumber }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ PersonCount :  {{data.personCount }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ PreExam :  {{data.preExam }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ AfterExam :  {{data.afterExam }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -123,7 +127,9 @@
                 'className': '',
                 'gosuName': '',
                 'description': '',
-                'personNumber': 0,
+                'personCount': 0,
+                'preExam': [],
+                'afterExam': [],
             }
         },
         methods: {

@@ -70,7 +70,9 @@
                     { text: "className", value: "className" },
                     { text: "gosuName", value: "gosuName" },
                     { text: "description", value: "description" },
-                    { text: "personNumber", value: "personNumber" },
+                    { text: "personCount", value: "personCount" },
+                    { text: "preExam", value: "preExam" },
+                    { text: "afterExam", value: "afterExam" },
                 ],
             class : [],
             newValue: {},
@@ -91,7 +93,9 @@
                 'className': '',
                 'gosuName': '',
                 'description': '',
-                'personNumber': 0,
+                'personCount': 0,
+                'preExam': [],
+                'afterExam': [],
             }
         },
         methods: {

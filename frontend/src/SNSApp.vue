@@ -70,6 +70,29 @@
                     </v-list-item>
 
 
+                    <v-list-item
+                        class="px-2"
+                        key="histories"
+                        to="/histories/histories"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        History
+                    </v-list-item>
+
+
+                    <v-list-item
+                        class="px-2"
+                        key="recommends"
+                        to="/recommends/recommends"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        Recommend
+                    </v-list-item>
+
 
                 </v-list>
             </v-navigation-drawer>
@@ -168,6 +191,20 @@ export default {
                 description: '', 
                 key: 'evaluations', 
                 route: '/evaluations/evaluations',
+                ImageUrl: '',
+            },
+            { 
+                title: 'History', 
+                description: '', 
+                key: 'histories', 
+                route: '/histories/histories',
+                ImageUrl: '',
+            },
+            { 
+                title: 'Recommend', 
+                description: '', 
+                key: 'recommends', 
+                route: '/recommends/recommends',
                 ImageUrl: '',
             },
             

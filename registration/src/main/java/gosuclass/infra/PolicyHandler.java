@@ -25,14 +25,14 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='ClassEvaluate'"
+        condition = "headers['type']=='PreClassEvaluate'"
     )
-    public void wheneverClassEvaluate_UpdateStatus(
-        @Payload ClassEvaluate classEvaluate
+    public void wheneverPreClassEvaluate_UpdateStatus(
+        @Payload PreClassEvaluate preClassEvaluate
     ) {
-        ClassEvaluate event = classEvaluate;
+        PreClassEvaluate event = preClassEvaluate;
         System.out.println(
-            "\n\n##### listener UpdateStatus : " + classEvaluate + "\n\n"
+            "\n\n##### listener UpdateStatus : " + preClassEvaluate + "\n\n"
         );
 
         // Sample Logic //

@@ -24,7 +24,13 @@
                                 Description :  {{item.description }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                PersonNumber :  {{item.personNumber }}
+                                PersonCount :  {{item.personCount }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                PreExam :  {{item.preExam }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                AfterExam :  {{item.afterExam }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -77,6 +83,10 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
+                    
+                    
                     
                     
                     

@@ -32,7 +32,8 @@ jobs:
           mvn clean package -f ./registration/pom.xml
           mvn clean package -f ./class/pom.xml
           mvn clean package -f ./evaluation/pom.xml
-          mvn clean package -f ./dashboard/pom.xml
+          mvn clean package -f ./history/pom.xml
+          mvn clean package -f ./recommend/pom.xml
 
       - name: Docker Build and push for Registration
         uses: docker/build-push-action@v4
@@ -64,13 +65,23 @@ jobs:
             ghcr.io/${{ github.repository }}/evaluation:latest
             ghcr.io/${{ github.repository }}/evaluation:${{ github.ref_name }}
             
-      - name: Docker Build and push for Dashboard
+      - name: Docker Build and push for History
         uses: docker/build-push-action@v4
         with:
-          context: ./dashboard
+          context: ./history
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/dashboard:latest
-            ghcr.io/${{ github.repository }}/dashboard:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/history:latest
+            ghcr.io/${{ github.repository }}/history:${{ github.ref_name }}
+            
+      - name: Docker Build and push for Recommend
+        uses: docker/build-push-action@v4
+        with:
+          context: ./recommend
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/recommend:latest
+            ghcr.io/${{ github.repository }}/recommend:${{ github.ref_name }}
             

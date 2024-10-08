@@ -12,7 +12,10 @@
                 <Number label="PersonId" v-model="item.personId" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <Number label="Score" v-model="item.score" :editMode="editMode" @change="change" />
+                <Number label="PreScore" v-model="item.preScore" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="AfterScore" v-model="item.afterScore" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
 

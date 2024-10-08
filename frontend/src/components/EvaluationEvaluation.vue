@@ -18,7 +18,8 @@
         <v-card-text style="background-color: white;">
             <Number label="ClassId" v-model="value.classId" :editMode="editMode" :inputUI="''"/>
             <Number label="PersonId" v-model="value.personId" :editMode="editMode" :inputUI="''"/>
-            <Number label="Score" v-model="value.score" :editMode="editMode" :inputUI="''"/>
+            <Number label="PreScore" v-model="value.preScore" :editMode="editMode" :inputUI="''"/>
+            <Number label="AfterScore" v-model="value.afterScore" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">
@@ -37,7 +38,14 @@
                     text
                     @click="save"
                 >
-                    Evaluate
+                    Preevaluate
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
+                    @click="save"
+                >
+                    Afterevaluate
                 </v-btn>
                 <v-btn
                     color="primary"

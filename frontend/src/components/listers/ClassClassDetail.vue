@@ -15,8 +15,10 @@
                 <String label="Description" v-model="item.description" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <Number label="PersonNumber" v-model="item.personNumber" :editMode="editMode" @change="change" />
+                <Number label="PersonCount" v-model="item.personCount" :editMode="editMode" @change="change" />
             </div>
+            <StringManager offline label="PreExam" v-model="item.preExam" :editMode="false" @change="change" />
+            <StringManager offline label="AfterExam" v-model="item.afterExam" :editMode="false" @change="change" />
         </v-card-text>
 
         <v-card-actions>

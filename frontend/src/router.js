@@ -14,6 +14,11 @@ import ClassClassDetail from "./components/listers/ClassClassDetail"
 import EvaluationEvaluationManager from "./components/listers/EvaluationEvaluationCards"
 import EvaluationEvaluationDetail from "./components/listers/EvaluationEvaluationDetail"
 
+import HistoryHistoryManager from "./components/listers/HistoryHistoryCards"
+import HistoryHistoryDetail from "./components/listers/HistoryHistoryDetail"
+
+import RecommendRecommendManager from "./components/listers/RecommendRecommendCards"
+import RecommendRecommendDetail from "./components/listers/RecommendRecommendDetail"
 
 
 export default new Router({
@@ -53,6 +58,27 @@ export default new Router({
                 component: EvaluationEvaluationDetail
             },
 
+            {
+                path: '/histories/histories',
+                name: 'HistoryHistoryManager',
+                component: HistoryHistoryManager
+            },
+            {
+                path: '/histories/histories/:id',
+                name: 'HistoryHistoryDetail',
+                component: HistoryHistoryDetail
+            },
+
+            {
+                path: '/recommends/recommends',
+                name: 'RecommendRecommendManager',
+                component: RecommendRecommendManager
+            },
+            {
+                path: '/recommends/recommends/:id',
+                name: 'RecommendRecommendDetail',
+                component: RecommendRecommendDetail
+            },
 
 
 

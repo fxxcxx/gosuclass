@@ -12,6 +12,8 @@ import lombok.*;
 public class ClassCancelled extends AbstractEvent {
 
     private Long id;
+    private Long classId;
+    private String status;
 
     public ClassCancelled(Registration aggregate) {
         super(aggregate);
