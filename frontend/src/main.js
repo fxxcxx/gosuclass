@@ -1,11 +1,11 @@
- /*eslint-disable*/
+/*eslint-disable*/
 import Vue from "vue";
 import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import Managing from "./components";
-import router from './router';
+import router from "./router";
 Vue.config.productionTip = false;
-require('./GlobalStyle.css');
+require("./GlobalStyle.css");
 
 const axios = require("axios").default;
 
@@ -13,29 +13,28 @@ const axios = require("axios").default;
 axios.backend = null; //"http://localhost:8088";
 
 // axios.backendUrl = new URL(axios.backend);
-axios.fixUrl = function(original){
-
-  if(!axios.backend && original.indexOf("/")==0) return original;
+axios.fixUrl = function (original) {
+  if (!axios.backend && original.indexOf("/") == 0) return original;
 
   var url = null;
 
-  try{
+  try {
     url = new URL(original);
-  }catch(e){
+  } catch (e) {
     url = new URL(axios.backend + original);
   }
 
-  if(!axios.backend) return url.pathname;
+  if (!axios.backend) return url.pathname;
 
   url.hostname = axios.backendUrl.hostname;
   url.port = axios.backendUrl.port;
 
   return url.href;
-}
+};
 
 const templateFiles = require.context("./components", true);
 Vue.prototype.$ManagerLists = [];
-templateFiles.keys().forEach(function(tempFiles) {
+templateFiles.keys().forEach(function (tempFiles) {
   if (!tempFiles.includes("Manager.vue") && tempFiles.includes("vue")) {
     Vue.prototype.$ManagerLists.push(
       tempFiles.replace("./", "").replace(".vue", "")
@@ -43,33 +42,47 @@ templateFiles.keys().forEach(function(tempFiles) {
   }
 });
 Vue.use(Managing);
-const pluralCaseList = []
+const pluralCaseList = [];
 
-pluralCaseList.push( {plural: "registrations/registrations", pascal: "RegistrationRegistration"} )
+pluralCaseList.push({
+  plural: "registrations/registrations",
+  pascal: "RegistrationRegistration",
+});
 
-pluralCaseList.push( {plural: "classes/classes", pascal: "ClassClass"} )
+pluralCaseList.push({
+  plural: "gosuclasses/gosuClasses",
+  pascal: "GosuclassGosuClass",
+});
 
-pluralCaseList.push( {plural: "evaluations/evaluations", pascal: "EvaluationEvaluation"} )
+pluralCaseList.push({
+  plural: "evaluations/evaluations",
+  pascal: "EvaluationEvaluation",
+});
 
-pluralCaseList.push( {plural: "histories/histories", pascal: "HistoryHistory"} )
+pluralCaseList.push({
+  plural: "histories/histories",
+  pascal: "HistoryHistory",
+});
 
-pluralCaseList.push( {plural: "recommends/recommends", pascal: "RecommendRecommend"} )
+pluralCaseList.push({
+  plural: "recommends/recommends",
+  pascal: "RecommendRecommend",
+});
 
-
-Vue.prototype.$ManagerLists.forEach(function(item, idx) {
-  pluralCaseList.forEach(function(tmp) {
-    if(item.toLowerCase() == tmp.pascal.toLowerCase()) {
+Vue.prototype.$ManagerLists.forEach(function (item, idx) {
+  pluralCaseList.forEach(function (tmp) {
+    if (item.toLowerCase() == tmp.pascal.toLowerCase()) {
       var obj = {
         name: item,
-        plural: tmp.plural
-      }
-      Vue.prototype.$ManagerLists[idx] = obj
+        plural: tmp.plural,
+      };
+      Vue.prototype.$ManagerLists[idx] = obj;
     }
-  })
-})
+  });
+});
 
 new Vue({
   vuetify,
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
