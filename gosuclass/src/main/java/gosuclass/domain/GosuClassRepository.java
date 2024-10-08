@@ -18,14 +18,13 @@ public interface GosuClassRepository
     @Query(
         value = "select gosuClass " +
         "from GosuClass gosuClass " +
-        "where(:id is null or gosuClass.id = :id) and (:className is null or gosuClass.className like %:className%) and (:classId is null or gosuClass.classId = :classId) and (:gosuName is null or gosuClass.gosuName like %:gosuName%) and (:description is null or gosuClass.description like %:description%) and (:personCount is null or gosuClass.personCount like %:personCount%)"
+        "where(:id is null or gosuClass.id = :id) and (:className is null or gosuClass.className like %:className%) and (:gosuName is null or gosuClass.gosuName like %:gosuName%) and (:description is null or gosuClass.description like %:description%) and (:personCount is null or gosuClass.personCount = :personCount)"
     )
     GosuClass findByClassPage(
         Long id,
         String className,
-        Long classId,
         String gosuName,
         String description,
-        String personCount
+        Integer personCount
     );
 }
