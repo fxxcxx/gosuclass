@@ -8,8 +8,7 @@ public class ClassPageQuery {
 
     private Long id;
     private String className;
-    private Long classId;
     private String gosuName;
     private String description;
-    private String personCount;
+    private Integer personCount;
 }
