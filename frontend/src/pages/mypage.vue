@@ -13,7 +13,7 @@ const classes = ref([]);
 
 const fetchClasses = async () => {
   try {
-    const response = await fetch('https://8088-fxxcxx-gosuclass-wchc49249p0.ws-us116.gitpod.io/gosuClasses');
+    const response = await fetch('https://20.249.197.95/gosuClasses');
     if (!response.ok) {
       throw new Error('클래스 데이터를 가져오는 중 오류 발생');
     }

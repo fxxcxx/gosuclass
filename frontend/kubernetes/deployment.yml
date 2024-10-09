@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: username/frontend:latest
+          image: wonegappa/ui:
           ports:
             - containerPort: 8080
           readinessProbe:

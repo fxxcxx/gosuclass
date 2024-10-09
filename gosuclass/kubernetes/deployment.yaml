@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gosuclass
-          image: "username/gosuclass:latest"
+          image: "wonegappa/gosuclass:1.0.1"
           ports:
             - containerPort: 8080
           readinessProbe:

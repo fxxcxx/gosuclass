@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: history
-          image: "username/history:latest"
+          image: "wonegappa/history:1.0.0"
           ports:
             - containerPort: 8080
           readinessProbe:

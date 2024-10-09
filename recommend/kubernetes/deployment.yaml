@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: recommend
-          image: "username/recommend:latest"
+          image: "wonegappa/recommend:1.0.0"
           ports:
             - containerPort: 8080
           readinessProbe:
