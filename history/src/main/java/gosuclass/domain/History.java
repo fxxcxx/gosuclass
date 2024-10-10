@@ -49,7 +49,6 @@ public class History {
             // 새롭게 생성된 History 정보를 저장
             repository().save(newHistory);
         });
-
     }
     //>>> Clean Arch / Port Method
 

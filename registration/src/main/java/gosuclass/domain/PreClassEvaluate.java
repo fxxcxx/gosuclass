@@ -7,8 +7,10 @@ import lombok.*;
 
 @Data
 @ToString
-public class ClassRegistDone extends AbstractEvent {
+public class PreClassEvaluate extends AbstractEvent {
+
     private Long id;
-    private Long classId;
-    private String status;
+    private Integer classId;
+    private Integer personId;
+    private Integer preScore;
 }

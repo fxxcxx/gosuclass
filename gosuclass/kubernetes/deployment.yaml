@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gosuclass
-          image: "min9ri/gosuclass:241009"
+          image: "min9ri/gosuclass:241010"
           ports:
             - containerPort: 8080
           readinessProbe:

@@ -53,7 +53,7 @@ public class Registration {
     }
 
     //<<< Clean Arch / Port Method
-public static void updateStatus(PreClassEvaluated preClassEvaluate) {
+public static  void updateStatus(PreClassEvaluate preClassEvaluate) {
     // preClassEvaluate에서 classId를 가져와 해당 클래스에 대한 Registration을 찾음
     repository().findById(Long.valueOf(preClassEvaluate.getClassId())).ifPresent(registration -> {
         
@@ -62,7 +62,7 @@ public static void updateStatus(PreClassEvaluated preClassEvaluate) {
         
         // 변경된 등록 정보를 저장
         repository().save(registration);
-        
+
         preClassEvaluate.publishAfterCommit();
     });
 }
