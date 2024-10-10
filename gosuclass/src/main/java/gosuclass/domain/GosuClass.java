@@ -38,7 +38,12 @@ public class GosuClass {
         ClassOpened classOpened = new ClassOpened(this);
         classOpened.publishAfterCommit();
 
-        ClassDeleted classDeleted = new ClassDeleted(this);
+     
+    }
+
+    @PostRemove
+    public void onPostRemove() {
+   ClassDeleted classDeleted = new ClassDeleted(this);
         classDeleted.publishAfterCommit();
     }
 
@@ -51,24 +56,15 @@ public class GosuClass {
 
     //<<< Clean Arch / Port Method
     public static void updateCount(ClassRegistDone classRegistDone) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        GosuClass gosuClass = new GosuClass();
-        repository().save(gosuClass);
-
-        */
-
-        /** Example 2:  finding and process
+// 1. classId를 사용하여 해당 GosuClass 조회
+    repository().findById(classRegistDone.getClassId()).ifPresent(gosuClass -> {
         
-        repository().findById(classRegistDone.get???()).ifPresent(gosuClass->{
-            
-            gosuClass // do something
-            repository().save(gosuClass);
-
-
-         });
-        */
+        // 2. personCount를 1 증가
+        gosuClass.setPersonCount(gosuClass.getPersonCount() + 1);
+        
+        // 3. 변경된 GosuClass 엔티티를 저장
+        repository().save(gosuClass);
+    });
 
     }
     //>>> Clean Arch / Port Method

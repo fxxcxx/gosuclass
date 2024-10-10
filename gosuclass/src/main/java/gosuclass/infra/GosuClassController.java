@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 //<<< Clean Arch / Inbound Adaptor
 
 @RestController
-// @RequestMapping(value="/gosuClasses")
+// @RequestMapping(value="/gosuclasses")
 @Transactional
 public class GosuClassController {
 

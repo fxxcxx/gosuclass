@@ -10,8 +10,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 //<<< PoEAA / Repository
 @RepositoryRestResource(
-    collectionResourceRel = "gosuClasses",
-    path = "gosuClasses"
+    collectionResourceRel = "gosuclasses",
+    path = "gosuclasses"
 )
 public interface GosuClassRepository
     extends PagingAndSortingRepository<GosuClass, Long> {

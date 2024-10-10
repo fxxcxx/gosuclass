@@ -53,50 +53,35 @@ public class Registration {
     }
 
     //<<< Clean Arch / Port Method
-    public static void updateStatus(PreClassEvaluate preClassEvaluate) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Registration registration = new Registration();
-        repository().save(registration);
-
-        */
-
-        /** Example 2:  finding and process
+public static void updateStatus(PreClassEvaluated preClassEvaluate) {
+    // preClassEvaluate에서 classId를 가져와 해당 클래스에 대한 Registration을 찾음
+    repository().findById(Long.valueOf(preClassEvaluate.getClassId())).ifPresent(registration -> {
         
-        repository().findById(preClassEvaluate.get???()).ifPresent(registration->{
-            
-            registration // do something
-            repository().save(registration);
-
-
-         });
-        */
-
-    }
+        // 평가 상태를 업데이트하는 로직 (예: status를 "preEvaluated"로 변경)
+        registration.setStatus("preEvaluated");
+        
+        // 변경된 등록 정보를 저장
+        repository().save(registration);
+        
+        preClassEvaluate.publishAfterCommit();
+    });
+}
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void updateStatus(ClassDeleted classDeleted) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Registration registration = new Registration();
+ // classDeleted에서 classId를 가져와 관련된 Registration을 찾음
+    repository().findById(classDeleted.getId()).ifPresent(registration -> {
+        
+        // 등록 상태를 "deleted"로 변경
+        registration.setStatus("삭제됨");
+        
+        // 변경된 등록 정보를 저장
         repository().save(registration);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(classDeleted.get???()).ifPresent(registration->{
-            
-            registration // do something
-            repository().save(registration);
-
-
-         });
-        */
-
+        // 필요시 이벤트를 발행할 수 있음 (예: ClassRegistrationDeleted 이벤트 발행)
+        classDeleted.publishAfterCommit();  
+    });
     }
     //>>> Clean Arch / Port Method
 
