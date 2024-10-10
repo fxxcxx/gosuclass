@@ -8,9 +8,10 @@ import lombok.*;
 @Data
 @ToString
 public class AfterClassEvaluate extends AbstractEvent {
-
     private Long id;
-    private Integer classId;
-    private Integer personId;
+    private Long classId;
+    private Long personId;
     private Integer afterScore;
+
+    
 }
