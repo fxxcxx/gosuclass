@@ -26,14 +26,6 @@ public class Registration {
 
     @PostPersist
     public void onPostPersist() {
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
-
-        gosuclass.external.Evaluation evaluation = new gosuclass.external.Evaluation();
-        // mappings goes here
-        RegistrationApplication.applicationContext
-            .getBean(gosuclass.external.EvaluationService.class)
-            .preevaluate(evaluation);
 
         ClassRegistered classRegistered = new ClassRegistered(this);
         classRegistered.publishAfterCommit();
@@ -45,6 +37,7 @@ public class Registration {
         classRegistDone.publishAfterCommit();
     }
 
+    
     public static RegistrationRepository repository() {
         RegistrationRepository registrationRepository = RegistrationApplication.applicationContext.getBean(
             RegistrationRepository.class
