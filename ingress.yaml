@@ -1,0 +1,48 @@
+apiVersion: networking.k8s.io/v1
+kind: "Ingress"
+metadata:
+  name: "gosuclass-ingress"
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    ingressclass.kubernetes.io/is-default-class: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ""
+      http:
+        paths:
+          - path: /gosuclasses
+            pathType: Prefix
+            backend:
+              service:
+                name: gosuclass
+                port:
+                  number: 8080
+          - path: /evaluations
+            pathType: Prefix
+            backend:
+              service:
+                name: evaluation
+                port:
+                  number: 8080
+          - path: /histories
+            pathType: Prefix
+            backend:
+              service:
+                name: history
+                port:
+                  number: 8080
+          - path: /recommends
+            pathType: Prefix
+            backend:
+              service:
+                name: recommend
+                port:
+                  number: 8080
+          - path: /registrations
+            pathType: Prefix
+            backend:
+              service:
+                name: registration
+                port:
+                  number: 8080

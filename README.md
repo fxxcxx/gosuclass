@@ -1,97 +1,32 @@
-# 
+![로컬 이미지](./imgs/genius.jpg)
 
-## Model
-www.msaez.io/#/storming/gosuclass
+# 고수의클래스 전용 지니어스
 
-## Before Running Services
-### Make sure there is a Kafka server running
-```
-cd kafka
-docker-compose up
-```
-- Check the Kafka messages:
-```
-cd infra
-docker-compose exec -it kafka /bin/bash
-cd /bin
-./kafka-console-consumer --bootstrap-server localhost:9092 --topic
-```
+## Table of Contents
 
-## Run the backend micro-services
-See the README.md files inside the each microservices directory:
+- [서비스 시나리오](#서비스시나리오)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-- registration
-- gosuclass
-- evaluation
-- history
-- recommend
+## 서비스 시나리오
 
+KT 교육플랫폼 지니어스에서 "고수의 클래스" 부분 커버하기
 
-## Run API Gateway (Spring Gateway)
-```
-cd gateway
-mvn spring-boot:run
-```
+**기능적요구사항**
 
-## Test by API
-- registration
-```
- http :8088/registrations id="id" classId="classId" status="status" 
-```
-- gosuclass
-```
- http :8088/gosuClasses id="id" className="className" gosuName="gosuName" description="description" personCount="personCount" preExam="preExam" afterExam="afterExam" 
-```
-- evaluation
-```
- http :8088/evaluations id="id" classId="classId" personId="personId" preScore="preScore" afterScore="afterScore" 
-```
-- history
-```
- http :8088/histories id="id" personId="personId" classId="classId" afterScore="afterScore" 
-```
-- recommend
-```
- http :8088/recommends id="id" personId="personId" classId="classId" className="className" 
-```
+1. 강사가 강의를 개설한다.
+2. 강사가 강의개설을 취소한다.
+3. 강사가 강의개설을 취소하면 수강자들도 신청이 취소된다.
+4. 수강자가 특정 강의를 신청한다.
+5. 수강자가 강의를 신청하면 사전평가를 응시한다.
+6. 수강자가 특정 강의 신청을 취소한다.
+7. 수강자가 신청한 강의를 조회한다.
+8. 강사가 수강자 수를 조회한다.
+9. 강사가 수강자의 사전평가 결과를 조회한다.
+10. 수강자가 사후평가를 응시한다.
+11. 수강자가 사후평가에 응시하면 수강이력에 기록된다.
 
-
-## Run the frontend
-```
-cd frontend
-npm i
-npm run serve
-```
-
-## Test by UI
-Open a browser to localhost:8088
-
-## Required Utilities
-
-- httpie (alternative for curl / POSTMAN) and network utils
-```
-sudo apt-get update
-sudo apt-get install net-tools
-sudo apt install iputils-ping
-pip install httpie
-```
-
-- kubernetes utilities (kubectl)
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```
-
-- aws cli (aws)
-```
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-
-- eksctl 
-```
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/local/bin
-```
-
+**비기능적 요구사항**
