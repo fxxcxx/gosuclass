@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import ClassCreateForm from '@/components/ClassCreateForm.vue';
-
-// import AppHeader from '@/components/AppHeader.vue';
 </script>
 
 <template>

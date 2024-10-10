@@ -52,6 +52,10 @@
       강의 개설
     </VBtn>
 
+    <VBtn class="mb-8 mt-8" color="gray" size="small" variant="tonal" block @click="generateRandomData">
+      테스트용 랜덤 강의 개설
+    </VBtn>
+
 
   </VCard>
 </template>
@@ -59,7 +63,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import apiClient from '@/plugins/axios';
+import { faker } from '@faker-js/faker';
 
 const router = useRouter();
 
@@ -94,22 +99,56 @@ const addAfterExam = () => {
 };
 
 const classCreate = () => {
-  axios.post('gosuClasses', {
+  apiClient.post('gosuClasses', {
       className: className.value,
       gosuName: gosuName.value,
       description: description.value,
       preExam: preExam.value,
-      afterExam: afterExam.value
+      afterExam: afterExam.value,
+      personCount: 0
   })
   .then(response => {
-    console.log(response.data);
     alert(className.value + " 강의를 개설 성공했습니다.");
+    router.push("/");
   })
   .catch(error => {
     console.error('Error posting data:', error);
   });
-  router.push("/");
+
 }
+const generateRandomData = async () => {
+  const randomData = [];
+
+  for (let i = 0; i < 10; i++) {
+    const className = faker.lorem.words(3);
+    const gosuName = faker.person.fullName();
+    const description = faker.lorem.sentence();
+    const preExam = Array.from({ length: 3 }, () => JSON.stringify({
+      question: faker.lorem.sentence(),
+      answer: faker.lorem.word()
+    }));
+    const afterExam = Array.from({ length: 3 }, () => JSON.stringify({
+      question: faker.lorem.sentence(),
+      answer: faker.lorem.word()
+    }));
+
+    try {
+      const response = await apiClient.post('gosuClasses', {
+      className: className,
+      gosuName: gosuName,
+      description: description,
+      preExam: preExam,
+      afterExam: afterExam,
+      personCount: 0
+  });
+      console.log(`${className} 강의 개설 성공:`, response.data);
+    } catch (error) {
+      console.error(`Error posting ${className}:`, error);
+    }
+  }
+
+
+};
 </script>
 
 <style lang="scss" scoped>

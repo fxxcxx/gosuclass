@@ -16,11 +16,7 @@ spec:
     spec:
       containers:
         - name: recommend
-<<<<<<< HEAD
-          image: "wonegappa/recommend:1.0.0"
-=======
           image: "min9ri/recommend:241009"
->>>>>>> 5630
           ports:
             - containerPort: 8080
           readinessProbe:

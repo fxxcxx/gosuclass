@@ -230,6 +230,11 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.57.1.tgz"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
+"@faker-js/faker@^9.0.3":
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-9.0.3.tgz#be817db896b07d1716bc65d9aad1ba587b499826"
+  integrity sha512-lWrrK4QNlFSU+13PL9jMbMKLJYXDFu3tQfayBsMXX7KL/GiQeqfB1CzHkqD5UHBUtPAuPo6XwGbMFNdVMZObRA==
+
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.13.0.tgz"
@@ -1966,8 +1971,9 @@ natural-compare@^1.4.0:
   version "0.0.0"
   dependencies:
     "@mdi/font" "7.4.47"
+    axios "^1.7.7"
     core-js "^3.37.1"
-    new-genius "file:C:/Users/KT/AppData/Local/Yarn/Cache/v6/npm-new-genius-0.0.0-2b75b608-cb6d-4a86-99ca-089f5759bf48-1728369471359/node_modules/new-genius"
+    new-genius "file:C:/Users/KT/AppData/Local/Yarn/Cache/v6/npm-new-genius-0.0.0-d50123bb-f30f-4962-859d-24ae1ddad5b1-1728538657236/node_modules/new-genius"
     roboto-fontface "*"
     vue "^3.4.31"
     vuetify "^3.6.11"
