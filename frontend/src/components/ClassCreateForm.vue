@@ -94,7 +94,7 @@ const addAfterExam = () => {
 };
 
 const classCreate = () => {
-  axios.post('https://8088-fxxcxx-gosuclass-wchc49249p0.ws-us116.gitpod.io/gosuClasses', {
+  axios.post('gosuClasses', {
       className: className.value,
       gosuName: gosuName.value,
       description: description.value,
