@@ -103,14 +103,8 @@ onMounted(() => {
 const registration = ref({});
 const reg_status = ref('');
 async function getRegistration(id) {
-  const response = await apiClient.get(`registrations/classId/${id}`, {
-    params: {
-      classId: id
-    },
-    data: {
-      // GET 요청에 바디 데이터를 추가하려면 여기에 작성하세요
-      // 예: someData: 'value'
-    }
+  const response = await apiClient.get(`registrations/${id}`, {
+
   });
   registration.value = response.data;
   console.log(registration.value);
