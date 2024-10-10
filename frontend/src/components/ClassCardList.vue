@@ -21,7 +21,7 @@
 
 const props = defineProps({
   title: {
-    type: Array,
+    type: String,
     required: true
   }
 });
