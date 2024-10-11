@@ -54,5 +54,21 @@ public class PolicyHandler {
         // Sample Logic //
         Registration.updateStatus(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='DeadlineReached'"
+    )
+    public void wheneverDeadlineReached_Reject(
+        @Payload DeadlineReached deadlineReached
+    ) {
+        DeadlineReached event = deadlineReached;
+        System.out.println(
+            "\n\n##### listener Reject : " + deadlineReached + "\n\n"
+        );
+
+        // Sample Logic //
+        Registration.reject(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

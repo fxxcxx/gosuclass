@@ -63,18 +63,23 @@ public static  void updateStatus(PreClassEvaluate preClassEvaluate) {
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void updateStatus(ClassDeleted classDeleted) {
- // classDeleted에서 classId를 가져와 관련된 Registration을 찾음
-    repository().findById(classDeleted.getId()).ifPresent(registration -> {
-        
-        // 등록 상태를 "deleted"로 변경
-        registration.setStatus("삭제됨");
-        
-        // 변경된 등록 정보를 저장
-        repository().save(registration);
+        // classDeleted에서 classId를 가져와 관련된 Registration을 찾음
+        repository().findById(classDeleted.getId()).ifPresent(registration -> {
 
-        // 필요시 이벤트를 발행할 수 있음 (예: ClassRegistrationDeleted 이벤트 발행)
-        classDeleted.publishAfterCommit();  
-    });
+            // 등록 상태를 "deleted"로 변경
+            registration.setStatus("삭제됨");
+
+            // 변경된 등록 정보를 저장
+            repository().save(registration);
+
+            // 필요시 이벤트를 발행할 수 있음 (예: ClassRegistrationDeleted 이벤트 발행)
+            classDeleted.publishAfterCommit();
+        });
+    }
+    
+    public static void reject(DeadlineReached deadlineReached) {
+        //  repository().findById(deadlineReached.getId()).ifPresent(registration->{
+        //     repository().save(registration);}
     }
     //>>> Clean Arch / Port Method
 

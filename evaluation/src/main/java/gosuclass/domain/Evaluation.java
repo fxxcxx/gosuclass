@@ -31,7 +31,9 @@ public class Evaluation {
     public void onPostPersist() {
         PreClassEvaluate preClassEvaluate = new PreClassEvaluate(this);
         preClassEvaluate.publishAfterCommit();
+    }
 
+    public void afterEvaluate() {
         AfterClassEvaluate afterClassEvaluate = new AfterClassEvaluate(this);
         afterClassEvaluate.publishAfterCommit();
     }
