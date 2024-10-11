@@ -38,5 +38,21 @@ public class PolicyHandler {
         // Sample Logic //
         GosuClass.updateCount(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='ClassCancelled'"
+    )
+    public void wheneverClassCancelled_UpdateCountMinus(
+        @Payload ClassCancelled classCancelled
+    ) {
+        ClassCancelled event = classCancelled;
+        System.out.println(
+            "\n\n##### listener UpdateCountMinus : " + classCancelled + "\n\n"
+        );
+
+        // Sample Logic //
+        GosuClass.updateCountMinus(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

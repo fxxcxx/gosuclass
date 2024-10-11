@@ -68,6 +68,19 @@ public class GosuClass {
     });
 
     }
+
+    public static void updateCountMinus(ClassCancelled classCancelled) {
+        // 1. classId를 사용하여 해당 GosuClass 조회
+            repository().findById(classCancelled.getClassId()).ifPresent(gosuClass -> {
+                
+                // 2. personCount를 1 감소
+                gosuClass.setPersonCount(gosuClass.getPersonCount() - 1);
+                
+                // 3. 변경된 GosuClass 엔티티를 저장
+                repository().save(gosuClass);
+            });
+        
+            }
     //>>> Clean Arch / Port Method
 
 }

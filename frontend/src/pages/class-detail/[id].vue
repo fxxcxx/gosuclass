@@ -65,24 +65,67 @@
   </v-row>
   <v-row>
     <v-col class="d-flex justify-start">
-      <v-btn v-if="reg_status != '신청됨'"  color="primary" class="me-2" @click="applyClass(id)">수강 신청</v-btn>
-      <v-btn v-if="reg_status == '신청됨'"  color="primary" class="me-2" @click="">사전 평가</v-btn>
+      <v-btn v-if="!isApplied"  color="primary" class="me-2" @click="applyClass(id)">수강 신청</v-btn>
+      <v-btn v-else-if="!isExamApplied" color="primary" class="me-2" @click="dialog = true">사전 평가</v-btn>
+      <v-btn v-else color="primary" class="me-2" disabled>사전 평가 제출완료</v-btn>
       <v-btn color="warning" class="me-2" @click="cancelClass(id)">수강 취소</v-btn>
     </v-col>
 
     <v-spacer></v-spacer>
     <v-col class="d-flex justify-end">
+      <v-btn color="green" class="me-2" @click="">수강생 정보</v-btn>
+
       <v-btn color="error" @click="deleteClass(id)">강의 삭제</v-btn>
     </v-col>
   </v-row>
   </v-container>
+
+  <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="1000"
+        prepend-icon="mdi-check-circle"
+        title="사전평가"
+      >
+      <div class="pa-3">
+        <template v-for="i in classDetail.preExam">
+          <v-row>
+            <v-col cols="12">
+              <p>문제</p>
+              <h3>
+                {{ JSON.parse(i).question }}
+              </h3>
+            </v-col>
+            <v-col cols="12">
+              <p>답</p>
+              <VTextField>
+
+              </VTextField>
+            </v-col>
+          </v-row>
+        </template>
+      </div>
+        <template v-slot:actions>
+          <v-btn
+            class="ms-auto"
+            color="success"
+            text="제출"
+            @click="examApply()"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
 </template>
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 
-
+const dialog = ref(false);
 const router = useRouter();
+
+const isApplied = ref(false);
 
 const route = useRoute()
 const id = route.params.id
@@ -103,7 +146,7 @@ onMounted(() => {
 const registration = ref({});
 const reg_status = ref('');
 async function getRegistration(id) {
-  const response = await apiClient.get(`registrations/${id}`, {
+  const response = await apiClient.get(`registrations/class/${id}`, {
 
   });
   registration.value = response.data;
@@ -141,6 +184,8 @@ async function applyClass(id) {
     console.log(response);
     if (response.status === 201) {
       alert('강의 수강 신청이 완료되었습니다.');
+      getGosuClass(id);
+      isApplied.value = true;
     } else {
       alert('강의 수강 신청에 실패했습니다. 다시 시도해주세요.');
     }
@@ -152,12 +197,30 @@ async function applyClass(id) {
 
 async function cancelClass(id) {
   try {
-    const response = await apiClient.delete(`registrations`);
+
+    const registData = await apiClient.get(`registrations`);
+    console.log(registData);
+    const registId = registData.data._embedded.registrations[0]._links.self.href.split('/').pop();
+
+
+    const response = await apiClient.delete(`registrations/${registId}`);
     console.log(response);
+    if (response.status === 204) {
+      alert('강의 수강 취소가 완료되었습니다.');
+      getGosuClass(id);
+      isApplied.value = false;
+      isExamApplied.value = false;
+    }
   } catch (error) {
     console.error('강의 수강 취소 중 오류 발생:', error);
     alert('강의 수강 취소 중 오류가 발생했습니다. 나중에 다시 시도해주세요.');
   }
+}
+
+const isExamApplied = ref(false);
+async function examApply() {
+  isExamApplied.value = true;
+  dialog.value = false;
 }
 </script>
 
